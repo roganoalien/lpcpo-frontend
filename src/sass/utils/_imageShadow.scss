@@ -1,0 +1,42 @@
+/*
+██╗███╗   ███╗ █████╗  ██████╗ ███████╗
+██║████╗ ████║██╔══██╗██╔════╝ ██╔════╝
+██║██╔████╔██║███████║██║  ███╗█████╗  
+██║██║╚██╔╝██║██╔══██║██║   ██║██╔══╝  
+██║██║ ╚═╝ ██║██║  ██║╚██████╔╝███████╗
+╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝ ╚══════╝
+
+███████╗██╗  ██╗ █████╗ ██████╗  ██████╗ ██╗    ██╗
+██╔════╝██║  ██║██╔══██╗██╔══██╗██╔═══██╗██║    ██║
+███████╗███████║███████║██║  ██║██║   ██║██║ █╗ ██║
+╚════██║██╔══██║██╔══██║██║  ██║██║   ██║██║███╗██║
+███████║██║  ██║██║  ██║██████╔╝╚██████╔╝╚███╔███╔╝
+╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝╚═════╝  ╚═════╝  ╚══╝╚══╝ 
+*/
+// @import '../config/vars.color';
+@import '../config/vars';
+
+@mixin shadow-img(
+	$left: 50%,
+	$bottom: -15px,
+	$blur: 20px,
+	$height: 70%,
+	$width: 80%,
+	$opacity: 0.5
+) {
+	// @if is-superselector(':after', &) {
+	// 	@warn 'shadow-img can be only used with :before or :after pseudoelements, and parent should have a background with a valid url for it to work.';
+	// }
+	// Parent should not have z-index
+	@include position-select($left, $bottom, absolute, true, false);
+	background-image: inherit;
+	background-size: cover;
+	content: '';
+	filter: blur($blur);
+	height: $height;
+	opacity: $opacity;
+	pointer-events: none;
+	transform: translateX(-50%) scale(1);
+	width: $width;
+	z-index: -1;
+}
