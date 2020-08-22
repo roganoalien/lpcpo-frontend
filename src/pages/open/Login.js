@@ -1,23 +1,25 @@
-import React, { useContext, useState, Fragment } from 'react';
+import React, { useState, Fragment } from 'react';
 import { motion } from 'framer-motion';
-import { AuthContext, AlertContext } from '../../globalState';
+// import { AuthContext, AlertContext } from '../../globalState';
 import {
 	variantsPage,
 	variantsChild,
 	variantsChildSecond
 } from '../../utils/animationVariants';
 
+import '../../sass/components/Login.scss';
+
 function Login() {
-	const { setAuthState } = useContext(AuthContext);
-	const { setAlertOpen, setAlertData, alertData } = useContext(AlertContext);
+	// const { setAuthState } = useContext(AuthContext);
+	// const { setAlertOpen, setAlertData, alertData } = useContext(AlertContext);
 	const [username, setUsername] = useState('');
 	const [email, setEmail] = useState('');
-	const [loading, setLoading] = useState(false);
+	// const [loading, setLoading] = useState(false);
 	const [step, setStep] = useState(1);
 
-	const handleSubmit = (e) => {
-		e.preventDefault();
-	};
+	// const handleSubmit = (e) => {
+	// 	e.preventDefault();
+	// };
 
 	const handleClick = (e) => {
 		e.preventDefault();
@@ -26,16 +28,16 @@ function Login() {
 
 	return (
 		<motion.main
-			className="custom-blackish-bg"
+			className="page-login"
 			variants={variantsPage}
 			initial="initial"
 			animate="animate"
 			exit="exit"
 		>
-			<div className="flex flex-wrap container mx-auto h-screen">
-				<div className="h-screen w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/4 mx-auto flex flex-col justify-center align-center">
+			<div className="flex flex-wrap container mx-auto h-screen px-4">
+				<div className="h-screen w-full sm:w-1/2 md:w-1/3 lg:w-4/12 xl:w-4/12 mx-auto flex flex-col justify-center align-center">
 					<motion.h1
-						className="mb-6 mx-auto w-9/12 text-6xl tracking-tight leading-10 font-extrabold sm:leading-none custom-white-c text-center mt-2"
+						className="title-logo mb-6 mx-auto w-9/12 text-6xl tracking-tight leading-10 font-extrabold sm:leading-none text-center mt-2"
 						variants={variantsChild}
 						initial="initial"
 						animate="animate"
@@ -48,19 +50,17 @@ function Login() {
 						initial="initial"
 						animate="animate"
 						exit="exit"
-						className="custom-black-bg rounded overflow-hidden shadow-2xl px-8 pt-6 pb-8 mb-4"
+						className="card-content-login rounded overflow-hidden shadow-2xl px-8 pt-10 pb-10 mb-4"
 					>
-						<h3 className="text-sm text-center custom-white-c">
-							NRDA
-						</h3>
-						<h2 className="text-lg text-center custom-white-c">
+						<h3 className="text-sm text-center">NRDA</h3>
+						<h2 className="text-lg text-center">
 							{step === 1 ? 'Iniciar Sesión' : 'Registro'}
 						</h2>
 						<div className="flex flex-col items-center justify-center w-full">
 							{step < 2 ? (
 								<div
 									onClick={handleClick}
-									className="custom-bg-rg text-white rounded my-8 custom-button-padding flex items-center justify-center font-bold"
+									className="custom-bg-rg text-white rounded my-4 custom-button-padding flex items-center justify-center font-bold cursor-pointer"
 								>
 									<svg
 										xmlns="http://www.w3.org/2000/svg"
@@ -78,7 +78,7 @@ function Login() {
 									<div className="mt-4 w-full mb-4">
 										<label
 											htmlFor="username"
-											className="block custom-white-c text-sm font-bold mb-2"
+											className="block text-sm font-bold mb-2"
 										>
 											Usuario
 										</label>
@@ -98,7 +98,7 @@ function Login() {
 									<div className="w-full mb-4">
 										<label
 											htmlFor="email"
-											className="block custom-white-c text-sm font-bold mb-2"
+											className="block text-sm font-bold mb-2"
 										>
 											Correo (para contacto)
 										</label>
@@ -116,7 +116,7 @@ function Login() {
 										/>
 									</div>
 									<div className="w-full mb-4">
-										<p className="block custom-white-c text-sm font-bold mb-2">
+										<p className="block text-sm font-bold mb-2">
 											Subir INE por ambos lados
 										</p>
 										<div className="w-full flex items-center justify-between">
@@ -127,11 +127,11 @@ function Login() {
 												<svg
 													xmlns="http://www.w3.org/2000/svg"
 													viewBox="0 0 32 32"
-													className="fill-current custom-white-c"
+													className="fill-current"
 												>
 													<path d="M 5 6 C 3.355469 6 2 7.355469 2 9 L 2 23 C 2 24.644531 3.355469 26 5 26 L 27 26 C 28.644531 26 30 24.644531 30 23 L 30 9 C 30 7.355469 28.644531 6 27 6 Z M 5 8 L 27 8 C 27.566406 8 28 8.433594 28 9 L 28 23 C 28 23.566406 27.566406 24 27 24 L 5 24 C 4.433594 24 4 23.566406 4 23 L 4 9 C 4 8.433594 4.433594 8 5 8 Z M 11 10 C 8.800781 10 7 11.800781 7 14 C 7 15.113281 7.476563 16.117188 8.21875 16.84375 C 6.886719 17.746094 6 19.28125 6 21 L 8 21 C 8 19.332031 9.332031 18 11 18 C 12.667969 18 14 19.332031 14 21 L 16 21 C 16 19.28125 15.113281 17.746094 13.78125 16.84375 C 14.523438 16.117188 15 15.113281 15 14 C 15 11.800781 13.199219 10 11 10 Z M 18 11 L 18 13 L 26 13 L 26 11 Z M 11 12 C 12.117188 12 13 12.882813 13 14 C 13 15.117188 12.117188 16 11 16 C 9.882813 16 9 15.117188 9 14 C 9 12.882813 9.882813 12 11 12 Z M 18 15 L 18 17 L 26 17 L 26 15 Z M 18 19 L 18 21 L 23 21 L 23 19 Z" />
 												</svg>
-												<p className="custom-white-c m-0 leading-tight">
+												<p className="m-0 leading-tight">
 													Frente
 												</p>
 											</label>
@@ -146,7 +146,7 @@ function Login() {
 												>
 													<path d="M 5 6 C 3.355469 6 2 7.355469 2 9 L 2 23 C 2 24.644531 3.355469 26 5 26 L 27 26 C 28.644531 26 30 24.644531 30 23 L 30 9 C 30 7.355469 28.644531 6 27 6 Z M 5 8 L 27 8 C 27.566406 8 28 8.433594 28 9 L 28 11 L 5 11 L 5 13 L 28 13 L 28 23 C 28 23.566406 27.566406 24 27 24 L 5 24 C 4.433594 24 4 23.566406 4 23 L 4 9 C 4 8.433594 4.433594 8 5 8 Z" />
 												</svg>
-												<p className="custom-white-c m-0 leading-tight">
+												<p className="m-0 leading-tight">
 													Detrás
 												</p>
 											</label>
@@ -166,14 +166,20 @@ function Login() {
 											/>
 										</div>
 									</div>
+									<div
+										onClick={handleClick}
+										className="custom-bg-rg text-white rounded mt-2 mb-4 custom-button-padding flex items-center justify-center font-bold cursor-pointer w-full"
+									>
+										<span>Enviar información</span>
+									</div>
 								</Fragment>
 							)}
 						</div>
-						<p className="custom-white-c leading-tight text-center text-sm opacity-75">
+						{/* <p className="leading-tight text-center text-sm opacity-75">
 							Si no estás registrado se evaluará tu perfil y en
 							caso de ser aprobado se te enviará una notificación
 							a tu correo
-						</p>
+						</p> */}
 					</motion.div>
 					<motion.p
 						variants={variantsChildSecond}

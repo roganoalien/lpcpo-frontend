@@ -27,6 +27,7 @@ body {
 	font-size: 16px;
 	min-height: 100vh;
 	overflow-x: hidden;
+	position: relative;
 	width: 100vw;
 	&.no-scroll {
 		overflow: hidden;
@@ -57,6 +58,9 @@ html {
                                                                 
 */
 //--- BACKGROUNDS & COLORS
+.min-third-width {
+	min-width: 33.33%;
+}
 .custom-button-padding {
 	padding: 10px 22px;
 }
@@ -134,33 +138,6 @@ html {
 .right-1 {
 	right: 20px;
 }
-
-.custom-input-lpcpo {
-	background: $c-blackish;
-	border: 2px solid $c-white;
-	color: $c-white;
-	&:focus,
-	&:active {
-		background: $c-black;
-	}
-}
-
-.ine-card {
-	background: $c-blackish;
-	border: 2px solid $c-white;
-	height: 100px;
-	width: 100px;
-	svg {
-		height: auto;
-		width: 40px;
-	}
-	p {
-		margin-top: -35px;
-	}
-	&:hover {
-		background: $c-black;
-	}
-}
 // MESSAGES
 #messages {
 	left: 0;
@@ -237,4 +214,32 @@ html {
 
 .z-99 {
 	z-index: 100;
+}
+
+/*
+██╗   ██╗██████╗ ██╗      ██████╗  █████╗ ██████╗ 
+██║   ██║██╔══██╗██║     ██╔═══██╗██╔══██╗██╔══██╗
+██║   ██║██████╔╝██║     ██║   ██║███████║██║  ██║
+██║   ██║██╔═══╝ ██║     ██║   ██║██╔══██║██║  ██║
+╚██████╔╝██║     ███████╗╚██████╔╝██║  ██║██████╔╝
+/╚═════╝ ╚═╝     ╚══════╝ ╚═════╝ ╚═╝  ╚═╝╚═════╝ 
+/██████╗ ██████╗ ███╗   ███╗██████╗  ██████╗ ███╗   ██╗███████╗███╗   ██╗████████╗
+██╔════╝██╔═══██╗████╗ ████║██╔══██╗██╔═══██╗████╗  ██║██╔════╝████╗  ██║╚══██╔══╝
+██║     ██║   ██║██╔████╔██║██████╔╝██║   ██║██╔██╗ ██║█████╗  ██╔██╗ ██║   ██║   
+██║     ██║   ██║██║╚██╔╝██║██╔═══╝ ██║   ██║██║╚██╗██║██╔══╝  ██║╚██╗██║   ██║   
+╚██████╗╚██████╔╝██║ ╚═╝ ██║██║     ╚██████╔╝██║ ╚████║███████╗██║ ╚████║   ██║   
+/╚═════╝ ╚═════╝ ╚═╝     ╚═╝╚═╝      ╚═════╝ ╚═╝  ╚═══╝╚══════╝╚═╝  ╚═══╝   ╚═╝   
+*/
+.upload-post {
+	.up-form {
+		// .up-f-avatar{}
+		.up-f-inputs {
+			.up-f-i-textarea {
+				border: none !important;
+				box-shadow: none !important;
+				outline: none !important;
+				resize: none;
+			}
+		}
+	}
 }

@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
 import WebFont from 'webfontloader';
 import ScrollTop from './scrollTop';
 import { ContextProvider } from './globalState/state';
@@ -18,13 +19,15 @@ WebFont.load({
 const history = '';
 
 ReactDOM.render(
-	<ContextProvider>
-		<BrowserRouter history={history}>
-			<ScrollTop>
-				<App />
-			</ScrollTop>
-		</BrowserRouter>
-	</ContextProvider>,
+	<HelmetProvider>
+		<ContextProvider>
+			<BrowserRouter history={history}>
+				<ScrollTop>
+					<App />
+				</ScrollTop>
+			</BrowserRouter>
+		</ContextProvider>
+	</HelmetProvider>,
 	document.getElementById('root')
 );
 

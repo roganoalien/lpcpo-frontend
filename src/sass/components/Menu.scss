@@ -1,0 +1,87 @@
+// @import '../config/vars.color';
+@import '../config/vars';
+@import '../utils/flexContainer';
+@import '../utils/positionSelect';
+
+.menu-contianer {
+	color: $c-black;
+	position: relative;
+	.fake-logo {
+		color: $c-blue;
+	}
+	.isActive {
+		background: rgba($c-blue, 0.1) !important;
+		color: $c-blue !important;
+	}
+	.my-profile {
+		background: transparent;
+		padding: 20px 0;
+		img {
+			border-radius: 50%;
+		}
+		svg {
+			fill: rgba($c-black, 0.5);
+		}
+		.intel {
+			p {
+				line-height: 1.1;
+				margin: 0;
+				&.username {
+					opacity: 0.75;
+				}
+				&.pill {
+					color: $c-blue;
+				}
+			}
+		}
+		&:hover {
+			background: $c-gray;
+		}
+	}
+	.notification-container {
+		background: rgba($c-blue, 0.15);
+		color: $c-blue;
+		&.nothing {
+			display: none;
+		}
+		@media (max-width: 1023px) {
+			@include flex-container();
+			@include position-select(50%, 5px, absolute, true, true);
+			background: $c-blue;
+			border: 2px solid $c-white;
+			border-radius: 50%;
+			color: $c-white;
+			font-size: 10px;
+			height: 20px;
+			margin: 0;
+			padding: 0;
+			// transform: translate(-50%, 0);
+			width: 20px;
+		}
+	}
+	.nav-item {
+		position: relative;
+		&:hover {
+			background: rgba($c-blue, 0.025);
+			color: $c-blue;
+		}
+	}
+	.post-anywhere {
+		background: $c-blue;
+		color: $c-white;
+		padding: 10px 32px;
+		&:hover {
+			background: $c-blue-dark;
+		}
+		@media (max-width: 1023px) {
+			height: 50px !important;
+			padding: 0;
+			position: relative;
+			width: 50px !important;
+			svg {
+				@include position-select(50%);
+				transform: translate(-43%, -55%);
+			}
+		}
+	}
+}

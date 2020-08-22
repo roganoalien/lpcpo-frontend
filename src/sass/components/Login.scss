@@ -1,0 +1,43 @@
+// @import '../config/vars.color';
+@import '../config/vars';
+
+.page-login {
+	background: $c-admin-bg;
+	.card-content-login {
+		background: $c-white;
+		color: $c-black;
+	}
+	.custom-input-lpcpo {
+		background: $c-white;
+		border: 1.5px solid $c-black;
+		&:focus {
+			background: $c-white;
+			border: 1.5px solid $c-blue;
+		}
+	}
+	.ine-card {
+		background: $c-gray;
+		border: 1.5px solid $c-black;
+		color: $c-black;
+		height: 100px;
+		width: 125px;
+		svg {
+			fill: $c-black;
+			height: auto;
+			width: 40px;
+		}
+		p {
+			margin-top: -35px;
+		}
+		&:hover {
+			border: 1.5px solid $c-blue;
+			color: $c-blue;
+			svg {
+				fill: $c-blue;
+			}
+		}
+	}
+	.title-logo {
+		color: $c-blue;
+	}
+}

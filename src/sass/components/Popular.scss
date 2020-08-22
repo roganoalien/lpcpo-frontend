@@ -1,0 +1,21 @@
+// @import '../config/vars.color';
+@import '../config/vars';
+@import '../utils/flexContainer';
+
+.site-admins,
+.site-pages,
+.top-posts {
+	border-radius: 10px;
+	.tp-title {
+		font-size: 18px;
+	}
+	.hashtags {
+		color: $c-blue;
+	}
+	a {
+		color: $c-black !important;
+		&:hover {
+			color: $c-blue !important;
+		}
+	}
+}

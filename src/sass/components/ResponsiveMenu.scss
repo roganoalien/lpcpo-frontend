@@ -1,0 +1,55 @@
+// @import '../config/vars.color';
+@import '../config/vars';
+@import '../utils/flexContainer';
+@import '../utils/positionSelect';
+
+.responsive-menu-bottom {
+	@include position-select(0, 0, fixed, true, false);
+	background: $c-white;
+	height: 60px;
+	position: relative;
+	transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+	width: 100vw;
+	z-index: 100;
+	.post-anywhere-responsive {
+		@include position-select(15px, -100%, absolute, false, true);
+		background: $c-blue;
+		height: 70px;
+		transform: translateY(-30px) scale(1);
+		transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+		width: 70px;
+		svg {
+			@include position-select(50%, 50%, absolute);
+			transform: translate(-45%, -55%);
+		}
+		&:hover {
+			transform: translateY(-30px) scale(1.1);
+		}
+	}
+	.responsive-nav-item {
+		background: transparent !important;
+		color: rgba($c-black, 0.25);
+		&.isActive {
+			color: $c-blue;
+		}
+	}
+}
+
+.responsive-menu-top {
+	@include flex-container(center, row, flex-start);
+	@include position-select(0, 0, fixed, true, true);
+	background: $c-white;
+	height: 60px;
+	position: relative;
+	transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+	width: 100vw;
+	z-index: 100;
+	h1 {
+		@include position-select(50%, 50%, absolute);
+		color: $c-blue;
+		transform: translate(-50%, -50%);
+	}
+	img {
+		border-radius: 50%;
+	}
+}
