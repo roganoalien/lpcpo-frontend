@@ -243,3 +243,28 @@ html {
 		}
 	}
 }
+
+.circular-counter-holder {
+	@include flex-container();
+	background: pink;
+	min-height: 30px;
+	min-width: 30px;
+	overflow: hidden;
+	position: relative;
+	.fixed-height {
+		height: 30px;
+		width: 30px;
+	}
+	.svg-direct-parent {
+		height: 30px;
+		width: 30px;
+		svg {
+			height: 100%;
+			overflow: visible;
+			width: 100%;
+			circle {
+				transform: rotate(90deg);
+			}
+		}
+	}
+}
