@@ -189,21 +189,21 @@ function PopularContent() {
 								<img
 									src="https://pbs.twimg.com/profile_images/1275138309094866944/V4Uyvf-s_normal.jpg"
 									alt="NOMBRE DE USUARIO"
-									className="rounded-full h-14 w-14"
+									className="rounded-full h-10 w-10"
 								/>
 							</div>
 							<div className="w-3/5 flex flex-col items-start justify-center">
-								<p className="font-bold text-lg m-0 leading-tight text-gray-700">
+								<p className="font-bold text-base m-0 leading-tight text-gray-700">
 									Rodrigo García
 								</p>
-								<p className="text-base m-0 leading-tight text-gray-700">
+								<p className="text-sm m-0 leading-tight text-gray-700">
 									@roganoalien
 								</p>
 							</div>
 							<div className="w-1/5 flex items-center justify-center">
-								<div className="pill bg-red-200 rounded-full">
-									<span className="text-red-600 text-xs py-1 px-2 flex">
-										admin
+								<div className="pill rounded-full">
+									<span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium leading-4 bg-teal-200 text-teal-800">
+										SuperAdmin
 									</span>
 								</div>
 							</div>
@@ -215,21 +215,21 @@ function PopularContent() {
 								<img
 									src="https://pbs.twimg.com/profile_images/1275138309094866944/V4Uyvf-s_normal.jpg"
 									alt="NOMBRE DE USUARIO"
-									className="rounded-full h-14 w-14"
+									className="rounded-full h-10 w-10"
 								/>
 							</div>
 							<div className="w-3/5 flex flex-col items-start justify-center">
-								<p className="font-bold text-lg m-0 leading-tight text-gray-700">
+								<p className="font-bold text-base m-0 leading-tight text-gray-700">
 									Rodrigo García
 								</p>
-								<p className="text-base m-0 leading-tight text-gray-700">
+								<p className="text-sm m-0 leading-tight text-gray-700">
 									@roganoalien
 								</p>
 							</div>
 							<div className="w-1/5 flex items-center justify-center">
-								<div className="pill bg-red-200 rounded-full">
-									<span className="text-red-600 text-xs py-1 px-2 flex">
-										admin
+								<div className="pill rounded-full">
+									<span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium leading-4 bg-indigo-200 text-indigo-800">
+										Admin
 									</span>
 								</div>
 							</div>

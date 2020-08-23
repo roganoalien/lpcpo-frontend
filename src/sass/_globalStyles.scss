@@ -244,27 +244,77 @@ html {
 	}
 }
 
+.bt-sa-upload-button {
+	background: $c-blue;
+	color: $c-white;
+	&:hover {
+		background: $c-blue-dark;
+	}
+}
+
+.up-f-inputs {
+	textarea {
+		height: auto;
+	}
+}
+
 .circular-counter-holder {
 	@include flex-container();
-	background: pink;
-	min-height: 30px;
-	min-width: 30px;
+	max-height: 30px;
+	max-width: 30px;
 	overflow: hidden;
 	position: relative;
 	.fixed-height {
 		height: 30px;
+		position: relative;
 		width: 30px;
 	}
 	.svg-direct-parent {
+		@include flex-container();
 		height: 30px;
+		position: relative;
 		width: 30px;
 		svg {
 			height: 100%;
 			overflow: visible;
+			left: 0;
+			transform: translate(50%, 50%);
 			width: 100%;
 			circle {
 				transform: rotate(90deg);
 			}
 		}
+	}
+}
+
+.bt-ot-item {
+	background: transparent;
+	color: $c-blue;
+	&:hover {
+		background: rgba($c-blue, 0.1);
+	}
+	&.disabled-item {
+		color: rgba($c-black, 0.25);
+		cursor: not-allowed;
+		&:hover {
+			background: rgba($c-black, 0);
+		}
+	}
+	&.isActive {
+		background: $c-blue !important;
+		color: $c-white;
+	}
+}
+
+.looong-post {
+	color: $c-blue;
+}
+
+.react-giphy-select__src-components-GiphySelect-styles__select___25GhN {
+	@include position-select(50%, 0, absolute, true, false);
+	background: $c-white;
+	transform: translate(-50%, 100%);
+	input {
+		border: 1px solid rgba($c-black, 0.25);
 	}
 }

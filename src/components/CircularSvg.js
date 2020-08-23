@@ -7,7 +7,7 @@ function CircularSvg({ color, circular }) {
 			<div className="fixed-height flex items-center justify-center">
 				<div className="svg-direct-parent">
 					<svg
-						className="circle-counter h-full w-full block absolute"
+						className="circle-counter h-full w-full block"
 						viewBox="0 0 30 30"
 						height="100%"
 						width="100%"
@@ -20,12 +20,12 @@ function CircularSvg({ color, circular }) {
 					>
 						<circle
 							className="arc-background"
-							cx="50%"
-							cy="50%"
+							// cx="50%"
+							// cy="50%"
 							fill="none"
 							strokeWidth="2"
 							r="9"
-							stroke="#f1f1f1"
+							stroke="#e2e8f0"
 							// r="90"
 							// style={{
 							// 	stroke: '#f1f1f1',
@@ -37,8 +37,8 @@ function CircularSvg({ color, circular }) {
 						></circle>
 						<circle
 							className="arc"
-							cx="50%"
-							cy="50%"
+							// cx="50%"
+							// cy="50%"
 							fill="none"
 							strokeWidth="2"
 							r="9"

@@ -33,6 +33,7 @@ function Login() {
 			initial="initial"
 			animate="animate"
 			exit="exit"
+			key="Login"
 		>
 			<div className="flex flex-wrap container mx-auto h-screen px-4">
 				<div className="h-screen w-full sm:w-1/2 md:w-1/3 lg:w-4/12 xl:w-4/12 mx-auto flex flex-col justify-center align-center">

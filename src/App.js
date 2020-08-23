@@ -13,7 +13,7 @@ const PRoute = ({ component: Component, ...rest }) => (
 		{...rest}
 		render={(props) =>
 			localStorage.getItem('token') === null ? (
-				<Layout>
+				<Layout key="Layout">
 					<Component {...props} />
 				</Layout>
 			) : (
@@ -32,10 +32,19 @@ function App() {
 	const location = useLocation();
 
 	return (
-		<Switch key={location.pathname} location={location}>
+		<Switch>
 			<AnimatePresence exitBeforeEnter>
-				<Route history={history} exact path="/" component={Login} />
+				<Route
+					history={history}
+					exact
+					path="/"
+					component={Login}
+					key={location.pathname}
+					location={location}
+				/>
 				<PRoute
+					// key={location.pathname}
+					// location={location}
 					history={history}
 					exact
 					path="/inicio"
