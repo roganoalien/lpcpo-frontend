@@ -2,6 +2,7 @@
 @import '../config/vars';
 @import '../utils/flexContainer';
 
+.rules-site,
 .site-admins,
 .site-pages,
 .top-posts {
@@ -17,5 +18,21 @@
 		&:hover {
 			color: $c-blue !important;
 		}
+	}
+	.show-rules {
+		color: $c-blue;
+		font-weight: bold;
+		border: 1px solid $c-blue;
+		padding: 0.5em 0;
+		&:hover {
+			color: $c-white;
+			background: $c-blue;
+		}
+	}
+}
+
+.site-admins {
+	.tp-title {
+		font-size: 16px;
 	}
 }

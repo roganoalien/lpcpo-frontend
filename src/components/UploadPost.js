@@ -67,8 +67,7 @@ function UploadPost() {
 	};
 
 	const handleLong = () => {
-		setShowEmoji(false);
-		setShowGif(false);
+		hideOthers(false);
 		setLongPost(!longPost);
 	};
 
@@ -82,10 +81,10 @@ function UploadPost() {
 		setPost(post + emoji.native);
 	};
 
-	const hideOthers = () => {
+	const hideOthers = (letsRemoveGif = true) => {
 		setShowGif(false);
-		removeGif();
 		setShowEmoji(false);
+		if (letsRemoveGif) removeGif();
 	};
 
 	const removeGif = () => {
@@ -111,23 +110,23 @@ function UploadPost() {
 				Subir post
 			</h2>
 			<form className="up-form flex pt-3 border-b-8 border-gray-200">
-				<div className="up-f-avatar w-2/12 flex items-start justify-center">
+				<div className="up-f-avatar w-2/12 hidden sm:flex items-start justify-center">
 					<img
 						className="rounded-full w-15 h-15 object-cover"
 						src="https://pbs.twimg.com/profile_images/1275138309094866944/V4Uyvf-s_normal.jpg"
 						alt="USER NAME"
 					/>
 				</div>
-				<div className="up-f-inputs w-10/12 flex flex-col">
+				<div className="up-f-inputs w-full sm:w-10/12 flex flex-col">
 					{longPost && (
-						<p className="looong-post m-0 text-sm w-full font-bold">
+						<p className="looong-post m-0 text-sm w-full font-bold pl-4 sm:pl-0 ">
 							Post largo
 						</p>
 					)}
 					<TextareaAutosize
 						id="post"
 						name="post"
-						className="up-f-i-textarea mt-1 block w-full text-base lg:text-lg sm:leading-5 pr-4 pt-2"
+						className="up-f-i-textarea mt-1 block w-full text-base lg:text-lg sm:leading-5 pl-4 sm:pl-0  pr-4 pt-2"
 						placeholder="¿Qué estás pensando?"
 						maxLength={longPost ? '2000' : '280'}
 						onChange={handleChange}
@@ -135,7 +134,7 @@ function UploadPost() {
 						required
 					></TextareaAutosize>
 					{gifExist && (
-						<div className="w-full image-preview-holder p-4 pl-0 flex items-center justify-center">
+						<div className="w-full image-preview-holder p-4 pl-0 flex items-center justify-center pl-4 sm:pl-0 ">
 							<div className="iph-img-item w-full relative rounded-md overflow-hidden border border-gray-200">
 								{/* <img src={gif.file} alt={gif.name} /> */}
 								<img
@@ -163,7 +162,7 @@ function UploadPost() {
 					)}
 					{showImg && (
 						<div
-							className={`w-full image-preview-holder p-4 pl-0 flex flex-wrap items-center justify-start ${
+							className={`w-full image-preview-holder p-4 pl-0 flex flex-wrap items-center justify-start pl-4 sm:pl-0 ${
 								imgArray.length > 1 ? 'multiple-items' : ''
 							}`}
 						>
@@ -223,7 +222,7 @@ function UploadPost() {
 							)}
 						</div>
 					)}
-					<div className="bottom-tools flex justify-between border-t border-gray-200 py-4 mt-2 z-50">
+					<div className="bottom-tools flex justify-between border-t border-gray-200 py-4 mt-2 z-50 pl-4 sm:pl-0 ">
 						<div className="bt-other-tools flex items-center justify-start">
 							<label
 								onClick={hideOthers}

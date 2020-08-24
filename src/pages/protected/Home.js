@@ -1,10 +1,16 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import UploadPost from '../../components/UploadPost';
 
 import '../../sass/components/Home.scss';
+import PostsWall from '../../components/PostsWall';
 
 function Home() {
-	return <UploadPost />;
+	return (
+		<Fragment>
+			<UploadPost />
+			<PostsWall />
+		</Fragment>
+	);
 }
 
 export default Home;

@@ -32,7 +32,7 @@ function Menu() {
 						15
 					</span>
 				</NavLink>
-				<NavLink
+				{/* <NavLink
 					to="/notificaciones"
 					className="nav-item group flex rounded items-center justify-center lg:justify-start px-4 py-4 text-sm leading-5 font-medium hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:bg-gray-200 transition ease-in-out duration-150"
 					activeClassName="isActive"
@@ -53,7 +53,7 @@ function Menu() {
 					<span className="notification-container nothing ml-auto inline-block py-0.5 px-3 text-xs leading-4 rounded-full transition ease-in-out duration-150">
 						0
 					</span>
-				</NavLink>
+				</NavLink> */}
 				<NavLink
 					to="/guardado"
 					className="nav-item group flex rounded items-center justify-center lg:justify-start px-4 py-4 text-sm leading-5 font-medium hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:bg-gray-200 transition ease-in-out duration-150"
