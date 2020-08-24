@@ -316,5 +316,27 @@ html {
 	transform: translate(-50%, 100%);
 	input {
 		border: 1px solid rgba($c-black, 0.25);
+		color: $c-black;
+	}
+}
+.image-preview-holder {
+	.iph-img-item {
+		height: 200px;
+		.iph-ii-remove-img {
+			@include position-select(10px);
+			background: $c-white;
+			border-radius: 50%;
+			cursor: pointer;
+			svg {
+				fill: $c-blue;
+				height: 30px;
+				width: 30px;
+			}
+		}
+	}
+	&.multiple-items {
+		.iph-img-item {
+			height: 150px;
+		}
 	}
 }

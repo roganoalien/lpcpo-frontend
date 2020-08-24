@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, Fragment } from 'react';
 import TextareaAutosize from 'react-autosize-textarea';
 import 'emoji-mart/css/emoji-mart.css';
 import { Picker } from 'emoji-mart';
 import GiphySelect from 'react-giphy-select';
 import 'react-giphy-select/lib/styles.css';
 import CircularSvg from './CircularSvg';
+
+const lodash = require('lodash/array');
 
 function UploadPost() {
 	const [post, setPost] = useState('');
@@ -13,6 +15,10 @@ function UploadPost() {
 	const [longPost, setLongPost] = useState(false);
 	const [showEmoji, setShowEmoji] = useState(false);
 	const [showGif, setShowGif] = useState(false);
+	const [gifExist, setGifExist] = useState(false);
+	const [gif, setGif] = useState({});
+	const [imgArray, setImgArray] = useState([]);
+	const [showImg, setShowImg] = useState(false);
 
 	const handleChange = (e) => {
 		const characterLimit = longPost ? 2000 : 280;
@@ -29,17 +35,74 @@ function UploadPost() {
 		}
 	};
 
+	const loadImgInArray = (file, name) => {
+		setImgArray([
+			...imgArray,
+			{
+				file,
+				name
+			}
+		]);
+	};
+
+	const handleGif = (item) => {
+		removeAllImages();
+		setShowGif(false);
+		setGif({
+			name: item.title,
+			file: item.images.original.url
+		});
+		setGifExist(true);
+	};
+
+	const handleImageInput = (e) => {
+		const name = e.target.files[0].name;
+		console.log('handleImageinput', name);
+		const reader = new FileReader();
+		reader.onload = function () {
+			loadImgInArray(reader.result, name);
+			if (!showImg) setShowImg(true);
+		};
+		reader.readAsDataURL(e.target.files[0]);
+	};
+
 	const handleLong = () => {
+		setShowEmoji(false);
+		setShowGif(false);
 		setLongPost(!longPost);
 	};
 
 	const handleEmoji = () => {
 		setShowEmoji(!showEmoji);
+		setShowGif(false);
 	};
 
 	const handleSelect = (emoji) => {
 		console.log(emoji);
 		setPost(post + emoji.native);
+	};
+
+	const hideOthers = () => {
+		setShowGif(false);
+		removeGif();
+		setShowEmoji(false);
+	};
+
+	const removeGif = () => {
+		setGifExist(false);
+		setGif({});
+	};
+
+	const removeAllImages = () => {
+		setShowImg(false);
+		setImgArray([]);
+	};
+
+	const removeImg = (index) => {
+		if (imgArray.length === 1) {
+			setShowImg(false);
+		}
+		setImgArray(lodash.without(imgArray, imgArray[index]));
 	};
 
 	return (
@@ -71,9 +134,102 @@ function UploadPost() {
 						value={post}
 						required
 					></TextareaAutosize>
+					{gifExist && (
+						<div className="w-full image-preview-holder p-4 pl-0 flex items-center justify-center">
+							<div className="iph-img-item w-full relative rounded-md overflow-hidden border border-gray-200">
+								{/* <img src={gif.file} alt={gif.name} /> */}
+								<img
+									src={gif.file}
+									alt={gif.name}
+									className="iph-ii-img w-full object-contain h-full"
+								/>
+								<div
+									className="iph-ii-remove-img"
+									onClick={() => removeGif(0)}
+								>
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
+										viewBox="0 0 20 20"
+										className="fill-current h-6 w-6"
+									>
+										<path
+											fillRule="evenodd"
+											d="M13.707,12.293 C14.098,12.684 14.098,13.316 13.707,13.707 C13.512,13.902 13.256,14 13,14 C12.744,14 12.488,13.902 12.293,13.707 L10,11.414 L7.707,13.707 C7.512,13.902 7.256,14 7,14 C6.744,14 6.488,13.902 6.293,13.707 C5.902,13.316 5.902,12.684 6.293,12.293 L8.586,10 L6.293,7.707 C5.902,7.316 5.902,6.684 6.293,6.293 C6.684,5.902 7.316,5.902 7.707,6.293 L10,8.586 L12.293,6.293 C12.684,5.902 13.316,5.902 13.707,6.293 C14.098,6.684 14.098,7.316 13.707,7.707 L11.414,10 L13.707,12.293 Z M10,2 C5.582,2 2,5.582 2,10 C2,14.418 5.582,18 10,18 C14.418,18 18,14.418 18,10 C18,5.582 14.418,2 10,2 L10,2 Z"
+										/>
+									</svg>
+								</div>
+							</div>
+						</div>
+					)}
+					{showImg && (
+						<div
+							className={`w-full image-preview-holder p-4 pl-0 flex flex-wrap items-center justify-start ${
+								imgArray.length > 1 ? 'multiple-items' : ''
+							}`}
+						>
+							{imgArray.length > 1 ? (
+								<Fragment>
+									{imgArray.map((item, index) => (
+										<div
+											key={index}
+											className="iph-img-item w-1/4 relative rounded-md overflow-hidden border border-gray-200"
+										>
+											<img
+												src={item.file}
+												alt="to upload"
+												className="iph-ii-img w-full object-cover h-full"
+											/>
+											<div
+												className="iph-ii-remove-img"
+												onClick={() => removeImg(index)}
+											>
+												<svg
+													xmlns="http://www.w3.org/2000/svg"
+													viewBox="0 0 20 20"
+													className="fill-current h-6 w-6"
+												>
+													<path
+														fillRule="evenodd"
+														d="M13.707,12.293 C14.098,12.684 14.098,13.316 13.707,13.707 C13.512,13.902 13.256,14 13,14 C12.744,14 12.488,13.902 12.293,13.707 L10,11.414 L7.707,13.707 C7.512,13.902 7.256,14 7,14 C6.744,14 6.488,13.902 6.293,13.707 C5.902,13.316 5.902,12.684 6.293,12.293 L8.586,10 L6.293,7.707 C5.902,7.316 5.902,6.684 6.293,6.293 C6.684,5.902 7.316,5.902 7.707,6.293 L10,8.586 L12.293,6.293 C12.684,5.902 13.316,5.902 13.707,6.293 C14.098,6.684 14.098,7.316 13.707,7.707 L11.414,10 L13.707,12.293 Z M10,2 C5.582,2 2,5.582 2,10 C2,14.418 5.582,18 10,18 C14.418,18 18,14.418 18,10 C18,5.582 14.418,2 10,2 L10,2 Z"
+													/>
+												</svg>
+											</div>
+										</div>
+									))}
+								</Fragment>
+							) : (
+								<div className="iph-img-item w-full relative rounded-md overflow-hidden border border-gray-200">
+									<img
+										src={imgArray[0].file}
+										alt="To Upload"
+										className="iph-ii-img w-full object-cover h-full"
+									/>
+									<div
+										className="iph-ii-remove-img"
+										onClick={() => removeImg(0)}
+									>
+										<svg
+											xmlns="http://www.w3.org/2000/svg"
+											viewBox="0 0 20 20"
+											className="fill-current h-6 w-6"
+										>
+											<path
+												fillRule="evenodd"
+												d="M13.707,12.293 C14.098,12.684 14.098,13.316 13.707,13.707 C13.512,13.902 13.256,14 13,14 C12.744,14 12.488,13.902 12.293,13.707 L10,11.414 L7.707,13.707 C7.512,13.902 7.256,14 7,14 C6.744,14 6.488,13.902 6.293,13.707 C5.902,13.316 5.902,12.684 6.293,12.293 L8.586,10 L6.293,7.707 C5.902,7.316 5.902,6.684 6.293,6.293 C6.684,5.902 7.316,5.902 7.707,6.293 L10,8.586 L12.293,6.293 C12.684,5.902 13.316,5.902 13.707,6.293 C14.098,6.684 14.098,7.316 13.707,7.707 L11.414,10 L13.707,12.293 Z M10,2 C5.582,2 2,5.582 2,10 C2,14.418 5.582,18 10,18 C14.418,18 18,14.418 18,10 C18,5.582 14.418,2 10,2 L10,2 Z"
+											/>
+										</svg>
+									</div>
+								</div>
+							)}
+						</div>
+					)}
 					<div className="bottom-tools flex justify-between border-t border-gray-200 py-4 mt-2 z-50">
 						<div className="bt-other-tools flex items-center justify-start">
-							<div className="bt-ot-item cursor-pointer flex items-center rounded-full justify-center h-10 w-10">
+							<label
+								onClick={hideOthers}
+								htmlFor="fileInput"
+								className="bt-ot-item cursor-pointer flex items-center rounded-full justify-center h-10 w-10"
+							>
 								<svg
 									xmlns="http://www.w3.org/2000/svg"
 									viewBox="0 0 24 24"
@@ -83,11 +239,16 @@ function UploadPost() {
 									<path d="M10.499 14L8.999 12 5.999 16 8.999 16 11.999 16 17.999 16 13.499 10z" />
 									<path d="M19.999,4h-16c-1.103,0-2,0.897-2,2v12c0,1.103,0.897,2,2,2h16c1.103,0,2-0.897,2-2V6C21.999,4.897,21.102,4,19.999,4z M3.999,18V6h16l0.002,12H3.999z" />
 								</svg>
-							</div>
+								<input
+									onChange={handleImageInput}
+									id="fileInput"
+									name="fileInput"
+									type="file"
+									className="hidden"
+									accept="image/*"
+								/>
+							</label>
 							<div
-								onClick={() => {
-									setShowGif(!showGif);
-								}}
 								className={`bt-ot-item cursor-pointer flex items-center relative rounded-full justify-center h-10 w-10 ${
 									showGif ? 'isActive' : ''
 								}`}
@@ -96,6 +257,10 @@ function UploadPost() {
 									xmlns="http://www.w3.org/2000/svg"
 									viewBox="0 0 24 24"
 									className="fill-current h-10 w-10"
+									onClick={() => {
+										setShowEmoji(false);
+										setShowGif(!showGif);
+									}}
 								>
 									<path d="M11.5 9H13v6h-1.5zM9 9H6c-.6 0-1 .5-1 1v4c0 .5.4 1 1 1h3c.6 0 1-.5 1-1v-2H8.5v1.5h-2v-3H10V10c0-.5-.4-1-1-1zm10 1.5V9h-4.5v6H16v-2h2v-1.5h-2v-1z" />
 								</svg>
@@ -103,6 +268,8 @@ function UploadPost() {
 									<GiphySelect
 										requestKey="YZhzo7gQEKtYZCE6Fa7CvflMDpZ1jUmW"
 										placeholder="Buscar gif..."
+										requestRating="r"
+										onEntrySelect={handleGif}
 										// onEntrySelect={}
 									/>
 								)}
