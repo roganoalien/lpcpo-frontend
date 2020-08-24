@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Like from './Like';
 import CommentBtn from './CommentBtn';
+import VerPost from './VerPost';
 
 function Post({
 	avatar,
@@ -56,6 +57,7 @@ function Post({
 				<div className="pi-c-meta w-full flex items-center justify-start mt-2">
 					<Like number={likes} hasLiked={hasLiked} />
 					<CommentBtn number={comments} />
+					<VerPost id={id} />
 				</div>
 			</div>
 		</div>

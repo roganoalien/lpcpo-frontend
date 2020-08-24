@@ -372,3 +372,14 @@ html {
 .like-event-item {
 	margin-left: -5px;
 }
+
+.go-to-detail-post {
+	background: transparent;
+	border: 1.5px solid $c-blue;
+	color: $c-blue;
+	padding: 2px 15px 3px;
+	&:hover {
+		background: $c-blue;
+		color: $c-white;
+	}
+}
