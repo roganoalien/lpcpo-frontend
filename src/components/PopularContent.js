@@ -1,9 +1,11 @@
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 // import PopularPosts from './PopularPosts';
 import Admins from './Admins';
 
 import '../sass/components/Popular.scss';
+import RuleComponent from './RuleComponent';
 
 function PopularContent() {
 	return (
@@ -36,26 +38,6 @@ function PopularContent() {
 					/>
 				</div>
 			</form>
-			<div className="rules-site bg-gray-100 border border-gray-200 flex flex-col items-center justify-center">
-				<h2 className="tp-title w-full font-bold border-b border-gray-200 px-4 py-2">
-					Reglas del sitio
-				</h2>
-				<button
-					className="show-rules my-2 rounded-full w-6/12 my-4 transition duration-150"
-					type="button"
-				>
-					Ver todas las reglas
-				</button>
-			</div>
-			{/*
-				/██████╗  ██████╗ ███████╗████████╗███████╗
-				██╔══██╗██╔═══██╗██╔════╝╚══██╔══╝██╔════╝
-				██████╔╝██║   ██║███████╗   ██║   ███████╗
-				██╔═══╝ ██║   ██║╚════██║   ██║   ╚════██║
-				██║     ╚██████╔╝███████║   ██║   ███████║
-				╚═╝      ╚═════╝ ╚══════╝   ╚═╝   ╚══════╝
-			*/}
-			{/* <PopularPosts /> */}
 			{/*
 				//..█████╗ ██████╗ ███╗   ███╗██╗███╗   ██╗███████╗
 				//██╔══██╗██╔══██╗████╗ ████║██║████╗  ██║██╔════╝
@@ -73,7 +55,7 @@ function PopularContent() {
 				╚██████╔╝██║  ██║███████╗███████║
 				/╚═════╝ ╚═╝  ╚═╝╚══════╝╚══════╝
 			*/}
-			<div className="site-pages flex mt-4 mb-10">
+			<div className="site-pages flex mt-4 mb-4">
 				<ul className="w-full flex flex-wrap">
 					<li className="mr-3">
 						<Link to="site-page" className="text-sm">
@@ -92,6 +74,71 @@ function PopularContent() {
 					</li>
 				</ul>
 			</div>
+			<div className="rules-site bg-gray-100 border border-gray-200 flex flex-col items-center justify-center mb-10">
+				<h2 className="tp-title w-full font-bold border-b border-gray-200 px-4 py-2">
+					Reglas del sitio
+				</h2>
+				<p className="ad p-4 leading-tight text-gray-700">
+					Si se infrige alguna de las siguientes reglas te haría
+					merecedor de un baneo temporal o uno permanente. Por favor
+					lee las reglas y siempre respeta a los demás miembros.
+				</p>
+				<button className="my-1 py-3 w-full transition duration-150 bg-gray-200 text-gray-600 text-sm">
+					Ocultar reglas
+				</button>
+				{/* <button
+					className="show-rules my-2 rounded-full w-6/12 my-4 transition duration-150"
+					type="button"
+				>
+					Ver todas las reglas
+				</button> */}
+				<motion.div className="hiding-rules">
+					<RuleComponent number={1}>
+						<p className="text-gray-600">
+							No promoción a eventos, otras páginas o grupos sin
+							previo aviso a la administración
+						</p>
+					</RuleComponent>
+					<RuleComponent number={2}>
+						<p className="text-gray-600">
+							Los miembros del grupo deben cuidar de no faltarse
+							al respeto o ejercer bullying contra otro miembro
+							del grupo, si no estás de acuerdo o no te gusta lo
+							que ves pasa de largo.
+						</p>
+					</RuleComponent>
+					<RuleComponent number={3}>
+						<p className="text-gray-600">
+							No quemones ni screenshots, si ocurre algún
+							incidente dentro o fuera del grupo, con algún otro
+							miembro debes dirigirte a cualquier integrante de la
+							administración para solucionarlo.
+						</p>
+					</RuleComponent>
+					<RuleComponent number={4}>
+						<p className="text-gray-600">
+							No se permiten las ventas de packs ni cualquier tipo
+							de venta, LPCPO NO ES UN GRUPO DE VENTAS.
+						</p>
+					</RuleComponent>
+					<RuleComponent number={5}>
+						<p className="text-gray-600">
+							No Grupos de Whatsapp, LPCPO tiene sus propios
+							grupos, por lo que no se permite generar grupos de
+							WA alternos a los oficiales.
+						</p>
+					</RuleComponent>
+				</motion.div>
+			</div>
+			{/*
+				/██████╗  ██████╗ ███████╗████████╗███████╗
+				██╔══██╗██╔═══██╗██╔════╝╚══██╔══╝██╔════╝
+				██████╔╝██║   ██║███████╗   ██║   ███████╗
+				██╔═══╝ ██║   ██║╚════██║   ██║   ╚════██║
+				██║     ╚██████╔╝███████║   ██║   ███████║
+				╚═╝      ╚═════╝ ╚══════╝   ╚═╝   ╚══════╝
+			*/}
+			{/* <PopularPosts /> */}
 		</Fragment>
 	);
 }

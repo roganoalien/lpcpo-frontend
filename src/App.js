@@ -12,7 +12,7 @@ const PRoute = ({ component: Component, ...rest }) => (
 	<Route
 		{...rest}
 		render={(props) =>
-			localStorage.getItem('token') === null ? (
+			localStorage.getItem('LPCPO') === null ? (
 				<Layout key="Layout">
 					<Component {...props} />
 				</Layout>
