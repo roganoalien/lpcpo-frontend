@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import Darkmode from '../components/Darkmode';
 
 import '../sass/components/Menu.scss';
 
@@ -7,9 +8,12 @@ function Menu() {
 	return (
 		<nav className="h-full menu-contianer flex flex-col">
 			<div className="flex flex-col sticky top-0 pt-2">
-				<h1 className="text-4xl hidden lg:block font-black mb-2 fake-logo px-4">
-					LPCPO
-				</h1>
+				<div className="flex items-center justify-start">
+					<h1 className="text-4xl hidden lg:block font-black mb-2 fake-logo px-4">
+						LPCPO
+					</h1>
+					<Darkmode />
+				</div>
 				<h1 className="text-2xl block lg:hidden font-black mb-2 fake-logo w-full text-center">
 					PO
 				</h1>

@@ -69,6 +69,7 @@
 	.post-anywhere {
 		background: $c-blue;
 		color: $c-white;
+		outline: none !important;
 		padding: 10px 32px;
 		&:hover {
 			background: $c-blue-dark;
